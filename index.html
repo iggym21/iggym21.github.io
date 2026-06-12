@@ -30,6 +30,7 @@
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
 
     ::selection { background: var(--accent); color: #0a0800; }
@@ -91,6 +92,36 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 999; opacity: 0.035;
     }
+
+    /* ── Thread ── */
+    #thread-svg {
+      position: absolute; top: 0; left: 0;
+      z-index: 4; pointer-events: none; overflow: visible;
+    }
+    #thread-path {
+      stroke: var(--accent); stroke-width: 2; fill: none;
+      filter: drop-shadow(0 0 6px oklch(0.78 0.17 72 / 0.7));
+    }
+    .thread-node {
+      fill: var(--bg); stroke: var(--border); stroke-width: 2;
+      transition: stroke 0.4s, fill 0.4s, filter 0.4s;
+    }
+    .thread-node.lit {
+      stroke: var(--accent); fill: oklch(0.3 0.08 72);
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+    .thread-node-end.lit { filter: drop-shadow(0 0 16px var(--accent)); }
+
+    /* ── Ghost numerals ── */
+    .ghost-num {
+      position: absolute; right: -1%; top: 8%;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(8rem, 18vw, 15rem); line-height: 1;
+      color: transparent; -webkit-text-stroke: 1px var(--border);
+      opacity: 0.55; z-index: 0;
+      pointer-events: none; user-select: none;
+    }
+    @media (max-width: 900px) { .ghost-num { display: none; } }
 
     /* ── Hero ── */
     #hero {
@@ -239,12 +270,11 @@
     .section {
       padding: 72px 0;
       border-top: 1px solid var(--border);
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1);
+      position: relative; overflow: hidden;
     }
-    .section.visible { opacity: 1; transform: none; }
     .section-inner {
       max-width: 1100px; margin: 0 auto; padding: 0 48px;
+      position: relative; z-index: 1;
     }
 
     /* ── Section label ── */
@@ -528,6 +558,12 @@
   <!-- Progress bar -->
   <div id="progress-bar-track"><div id="progress-bar-fill"></div></div>
 
+  <!-- Thread -->
+  <svg id="thread-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path id="thread-path" d="" />
+    <g id="thread-nodes"></g>
+  </svg>
+
   <!-- Section nav -->
   <nav id="section-nav" aria-label="Sections">
     <a class="nav-dot-link" href="#hero"       data-section="hero">       <span class="nav-dot-label">INTRO</span>      <div class="nav-dot"></div></a>
@@ -572,12 +608,12 @@
     </div>
     <div class="scroll-cue">
       <span>SCROLL</span>
-      <div class="scroll-cue-line"></div>
     </div>
   </section>
 
   <!-- ══ ABOUT ══ -->
   <section id="about" class="section">
+    <div class="ghost-num" aria-hidden="true">01</div>
     <div class="section-inner">
       <div class="section-label" id="label-about">
         <svg width="48" height="2" style="overflow:visible">
@@ -622,6 +658,7 @@
 
   <!-- ══ EXPERIENCE ══ -->
   <section id="experience" class="section">
+    <div class="ghost-num" aria-hidden="true">02</div>
     <div class="section-inner">
       <div class="section-label" id="label-experience">
         <svg width="48" height="2" style="overflow:visible">
@@ -634,7 +671,6 @@
       </div>
       <div id="experience-list">
         <div class="exp-item" style="transition-delay:0ms">
-          <div class="exp-accent-line"></div>
           <div class="exp-meta">
             <div class="exp-period">Jun – Aug 2026</div>
             <div class="exp-company">Citi · Tampa, FL</div>
@@ -645,7 +681,6 @@
           </div>
         </div>
         <div class="exp-item" style="transition-delay:100ms">
-          <div class="exp-accent-line"></div>
           <div class="exp-meta">
             <div class="exp-period">Jun – Aug 2025</div>
             <div class="exp-company">Narb · Lewes, DE</div>
@@ -656,7 +691,6 @@
           </div>
         </div>
         <div class="exp-item" style="transition-delay:200ms">
-          <div class="exp-accent-line"></div>
           <div class="exp-meta">
             <div class="exp-period">Jan 2025 – Present</div>
             <div class="exp-company">Data-Driven Humanities Research Group · UF</div>
@@ -667,7 +701,6 @@
           </div>
         </div>
         <div class="exp-item" style="transition-delay:300ms">
-          <div class="exp-accent-line"></div>
           <div class="exp-meta">
             <div class="exp-period">Jul – Dec 2024</div>
             <div class="exp-company">Vorkinsta · Tampa, FL</div>
@@ -683,6 +716,7 @@
 
   <!-- ══ PROJECTS ══ -->
   <section id="projects" class="section">
+    <div class="ghost-num" aria-hidden="true">03</div>
     <div class="section-inner">
       <div class="section-label" id="label-projects">
         <svg width="48" height="2" style="overflow:visible">
@@ -773,6 +807,7 @@
 
   <!-- ══ SKILLS ══ -->
   <section id="skills" class="section">
+    <div class="ghost-num" aria-hidden="true">04</div>
     <div class="section-inner">
       <div class="section-label" id="label-skills">
         <svg width="48" height="2" style="overflow:visible">
@@ -836,6 +871,7 @@
 
   <!-- ══ CONTACT ══ -->
   <section id="contact" class="section" style="padding-bottom:80px">
+    <div class="ghost-num" aria-hidden="true">05</div>
     <div class="section-inner">
       <div class="section-label" id="label-contact">
         <svg width="48" height="2" style="overflow:visible">
@@ -843,7 +879,7 @@
         </svg>
         <span class="section-label-text">Contact</span>
       </div>
-      <div class="reveal" id="contact-content">
+      <div id="contact-content">
         <div style="max-width:600px">
           <h2 class="contact-heading">Let's build something<br /><em>together.</em></h2>
           <p class="contact-body">
