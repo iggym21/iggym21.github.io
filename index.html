@@ -1016,7 +1016,9 @@
       const cue    = document.querySelector('.scroll-cue');
       const startX = vw / 2;
       const startY = pageY(cue) + 10;
-      const railTop = startY + 200;
+      // Curve must join the rail above the first node (about, +70) or the line misses it
+      const aboutNodeY = pageY(document.getElementById('about')) + 70;
+      const railTop = Math.min(startY + 200, aboutNodeY - 28);
 
       const btn  = document.querySelector('#contact .btn-primary');
       const endY = pageY(btn) + btn.offsetHeight / 2;
