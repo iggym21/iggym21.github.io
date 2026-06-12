@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('js');</script>
   <title>Ignatius Martin — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -496,6 +497,19 @@
       font-weight: 400; margin-bottom: 32px;
     }
 
+    /* ── JS-active initial states (prevent FOUC; GSAP inline styles take over) ── */
+    @media (prefers-reduced-motion: no-preference) {
+      html.js .reveal, html.js .exp-item, html.js .project-card-wrap { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+      html.js .skill-category, html.js .skill-tag,
+      html.js .contact-heading, html.js .contact-body,
+      html.js #contact .btn-primary, html.js .contact-link { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: no-preference) and (max-width: 900px) {
+      html.js .skill-group, html.js #contact-content { opacity: 0; }
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -956,6 +970,7 @@
     }
     if (heroImg.complete) onImgLoad();
     else heroImg.addEventListener('load', onImgLoad);
+    heroImg.addEventListener('error', () => gsap.set(photoWrap, { autoAlpha: 1 }));
 
     /* ═══ COUNT-UP STATS ═══ */
     const statsWrap  = document.getElementById('stats-grid-wrap');
@@ -1081,7 +1096,13 @@
         ScrollTrigger.refresh();
       }, 250);
       window.addEventListener('resize', rebuild);
-      window.addEventListener('load', rebuild);
+      const onLoadRebuild = () => {
+        teardownThread();
+        teardownThread = enableThread();
+        ScrollTrigger.refresh();
+      };
+      if (document.readyState === 'complete') onLoadRebuild();
+      else window.addEventListener('load', onLoadRebuild, { once: true });
 
       // Hero cinematic exit
       gsap.timeline({
@@ -1159,7 +1180,7 @@
 
       return () => {
         window.removeEventListener('resize', rebuild);
-        window.removeEventListener('load', rebuild);
+        window.removeEventListener('load', onLoadRebuild);
         teardownThread();
       };
     });
@@ -1174,7 +1195,13 @@
         ScrollTrigger.refresh();
       }, 250);
       window.addEventListener('resize', rebuild);
-      window.addEventListener('load', rebuild);
+      const onLoadRebuild = () => {
+        teardownThread();
+        teardownThread = enableThread();
+        ScrollTrigger.refresh();
+      };
+      if (document.readyState === 'complete') onLoadRebuild();
+      else window.addEventListener('load', onLoadRebuild, { once: true });
 
       // Simple one-shot fades — no scrub, no parallax
       gsap.utils.toArray('.reveal, .exp-item, .project-card-wrap, .skill-group, #contact-content')
@@ -1188,7 +1215,7 @@
 
       return () => {
         window.removeEventListener('resize', rebuild);
-        window.removeEventListener('load', rebuild);
+        window.removeEventListener('load', onLoadRebuild);
         teardownThread();
       };
     });
