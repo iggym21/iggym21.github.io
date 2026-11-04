@@ -608,7 +608,7 @@
         <div class="stats-grid-wrap" id="stats-grid-wrap">
           <div class="stats-grid">
             <div class="stat-cell">
-              <div class="stat-value" data-target="4" data-suffix="+">0+</div>
+              <div class="stat-value" data-target="9" data-suffix="+">0+</div>
               <div class="stat-label">Projects shipped</div>
             </div>
             <div class="stat-cell">
@@ -620,8 +620,8 @@
               <div class="stat-label">Students mentored</div>
             </div>
             <div class="stat-cell">
-              <div class="stat-value" data-target="2027" data-suffix="">0</div>
-              <div class="stat-label">Expected graduation</div>
+              <div class="stat-value" data-target="2028" data-suffix="">0</div>
+              <div class="stat-label">Expected graduation · May</div>
             </div>
           </div>
         </div>
@@ -650,7 +650,7 @@
           </div>
           <div>
             <div class="exp-role">Application Development Summer Analyst</div>
-            <p class="exp-desc"></p>
+            <p class="exp-desc">Engineered a full-stack Ansible Automation Setup Tool (Python, HTML/CSS/JS) that replaced manual creation of 16+ config files per repo across 3 global regions. Cut repository setup time 90%+ via dynamic config generation and automated Git integration, deployed team-wide. Shipped 5+ Tableau dashboards saving 60+ hours, plus two internal GitHub utility scripts across 25+ merged pull requests.</p>
           </div>
         </div>
         <div class="exp-item" style="transition-delay:100ms">
@@ -660,17 +660,17 @@
           </div>
           <div>
             <div class="exp-role">Mobile Application Developer Intern</div>
-            <p class="exp-desc">Architected cross-platform modules in React Native, TypeScript, and Convex for a product serving 5K+ monthly active users. Cut crash rates 15% through state optimization and CI/CD-integrated profiling. Drove a 25% faster SDLC velocity across 20+ deployed features using Agile/Scrum and TDD with 95% test coverage.</p>
+            <p class="exp-desc">Built cross-platform modules in React Native, TypeScript, and a serverless Convex backend supporting 5K+ monthly active users. Cut crash rates 15% through state optimization and CI/CD-integrated performance profiling. Drove 25% faster SDLC velocity across 6 deployed features using Agile/Scrum, with TDD, automated builds, and code reviews ensuring 95% test coverage.</p>
           </div>
         </div>
         <div class="exp-item" style="transition-delay:200ms">
           <div class="exp-meta">
-            <div class="exp-period">Jan 2025 – Present</div>
+            <div class="exp-period">Jan – Dec 2025</div>
             <div class="exp-company">Data-Driven Humanities Research Group · UF</div>
           </div>
           <div>
             <div class="exp-role">Machine Learning Researcher</div>
-            <p class="exp-desc">Developing deep learning pipelines with TensorFlow/Keras, reaching 92% accuracy on linguistic pattern recognition over 100K+ records. Improved Precision/Recall by 18% via tokenization optimization and deployed three end-to-end ML prototypes with scikit-learn, improving inference speed 40%.</p>
+            <p class="exp-desc">Built deep learning pipelines with TensorFlow/Keras, reaching 92% accuracy on linguistic pattern recognition tasks. Improved Precision/Recall 18% on 100K+ records by optimizing tokenization and preprocessing, and built three end-to-end ML prototypes with scikit-learn and NumPy, improving inference speed 40%.</p>
           </div>
         </div>
         <div class="exp-item" style="transition-delay:300ms">
@@ -705,21 +705,59 @@
       </div>
       <div class="projects-grid" id="projects-grid">
         <div class="project-card-wrap">
-          <div class="project-card">
+          <div class="project-card" onclick="window.open('https://github.com/iggym21/sentinel','_blank')" style="cursor:pointer">
             <div class="project-card-bar"></div>
             <div class="project-card-scanline"></div>
             <div class="project-card-top">
-              <h3 class="project-title">Campus Compass</h3>
+              <h3 class="project-title">Sentinel</h3>
               <span class="project-view">VIEW →</span>
             </div>
-            <p class="project-desc">Scalable cloud-native platform with 99.5% uptime, powered by containerized microservices and AWS IAM security. Enhanced data throughput by 60% via async RESTful integrations and a Redis caching layer.</p>
+            <p class="project-desc">Autonomous two-agent system (Watchdog + Analyst) running a live Claude tool-use loop across 6 tools — price history, news, SEC filings, ratios — to synthesize cited investment theses. Routes judgment calls to Haiku and deep research to Sonnet, with a deterministic fallback backend on an identical trace schema for $0, no-API-key demos and tests.</p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
-              <span class="project-tag">ReactJS</span>
-              <span class="project-tag">Flask</span>
-              <span class="project-tag">MongoDB</span>
-              <span class="project-tag">AWS</span>
-              <span class="project-tag">Redis</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">Next.js</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Claude API</span>
+              <span class="project-tag">SQLAlchemy</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card-wrap">
+          <div class="project-card" onclick="window.open('https://github.com/iggym21/Ledgerline','_blank')" style="cursor:pointer">
+            <div class="project-card-bar"></div>
+            <div class="project-card-scanline"></div>
+            <div class="project-card-top">
+              <h3 class="project-title">Ledgerline</h3>
+              <span class="project-view">VIEW →</span>
+            </div>
+            <p class="project-desc">Replicated LSM-tree storage engine in C++20 (WAL, memtable, SSTable compaction) sustaining 17.5–18k writes/sec at sub-3ms p99 latency, verified across 75 tests. Achieves 11–12ms leader failover with zero data loss under SIGKILL fault injection, with 5.9x throughput and 140x faster range scans vs. a SQLite baseline.</p>
+            <div class="project-tags">
+              <span class="project-tag">C++20</span>
+              <span class="project-tag">Distributed Systems</span>
+              <span class="project-tag">Kubernetes</span>
+              <span class="project-tag">Prometheus</span>
+              <span class="project-tag">Grafana</span>
+              <span class="project-tag">Docker</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card-wrap">
+          <div class="project-card" onclick="window.open('https://github.com/iggym21/BacktestIQ','_blank')" style="cursor:pointer">
+            <div class="project-card-bar"></div>
+            <div class="project-card-scanline"></div>
+            <div class="project-card-top">
+              <h3 class="project-title">BacktestIQ</h3>
+              <span class="project-view">VIEW →</span>
+            </div>
+            <p class="project-desc">Full-stack trading strategy backtester with a visual rule builder, Claude-powered natural-language-to-logic conversion, and a vectorized engine computing 13 quant metrics (Sharpe, Sortino, Calmar) on live market data. GitHub Actions CI gates every push on a 115+ test suite; found and fixed an SSRF vulnerability in server-side PDF generation.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Claude API</span>
+              <span class="project-tag">Docker</span>
             </div>
           </div>
         </div>
